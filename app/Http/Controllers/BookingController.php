@@ -8,7 +8,6 @@ use App\Http\Requests\StoreBookingRequest;
 use App\Services\Booking\Dto\CreateBookingDto;
 use App\Services\Booking\Dto\DeleteBookingDto;
 use App\Services\Booking\Interfaces\BookingsServiceInterface;
-use OpenApi\Annotations as OA;
 
 class BookingController extends Controller
 {
