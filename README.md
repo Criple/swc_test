@@ -6,6 +6,7 @@
         <li>Для почты можно прописать MAIL_MAILER=log либо прописать свои доступы</li>
         <li>Запустить миграции php artisan migrate</li>
         <li>Сгенерировать документацию php artisan l5-swagger:generate</li>
+        <li>Запустить сервер php artisan serve</li>
         <li>Можно работать либо запускать тесты php artisan test</li>
     </ol>
 </p>
