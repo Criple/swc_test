@@ -1,0 +1,266 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Resources Booking API",
+        "description": "API для создания Resources и их бронирования(Bookings)",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/bookings": {
+            "post": {
+                "summary": "Создание бронирования",
+                "operationId": "e33fa5a6507581f9b1e0d710a9a130d1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "resource_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "start_time": {
+                                        "description": "Начало бронирования",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "end_time": {
+                                        "description": "Конец бронирования",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный вызов",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "type": "null",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/bookings/{bookingId}": {
+            "delete": {
+                "summary": "Отмена бронирования",
+                "operationId": "ac1b2de161654d5727eada58ce0b58ad",
+                "responses": {
+                    "200": {
+                        "description": "Успешный вызов",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "type": "null",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resources": {
+            "get": {
+                "summary": "Получение списка всех Resources",
+                "operationId": "ee96de2f37d473ea4740b7700ddd1daf",
+                "responses": {
+                    "200": {
+                        "description": "Успешный вызов",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Создание нового Resource",
+                "operationId": "0da436b1bb56ca9fcbc4523e6be6b1cc",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Standard room"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "room"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "resource description"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный вызов",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        },
+                                        "data": {
+                                            "type": "null",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resources/{resourceId}/bookings": {
+            "get": {
+                "summary": "Получение всех bookings для resource",
+                "operationId": "3188bcbee399510428e69a8e517d5d84",
+                "responses": {
+                    "200": {
+                        "description": "Успешный вызов",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "getAllResourcesResult": {
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "1"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Standard room"
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "room"
+                            },
+                            "description": {
+                                "type": "string",
+                                "example": "resource description"
+                            },
+                            "created_at": {
+                                "description": "Initial creation timestamp",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "description": "Last update timestamp",
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "getAllBookingsForResourceResult": {
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "1"
+                            },
+                            "resource_id": {
+                                "type": "integer",
+                                "example": "1"
+                            },
+                            "user_id": {
+                                "type": "integer",
+                                "example": "1"
+                            },
+                            "start_time": {
+                                "description": "Начало бронирования",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "end_time": {
+                                "description": "Конец бронирования",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "created_at": {
+                                "description": "Initial creation timestamp",
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "description": "Last update timestamp",
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
