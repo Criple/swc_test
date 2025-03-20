@@ -3,6 +3,7 @@
     <ol>
         <li>composer install</li>
         <li>Прописать доступы к БД в .env</li>
+        <li>Для почты можно прописать MAIL_MAILER=log либо прописать свои доступы</li>
         <li>Запустить миграции php artisan migrate</li>
         <li>Сгенерировать документацию php artisan l5-swagger:generate</li>
         <li>Можно работать либо запускать тесты php artisan test</li>
