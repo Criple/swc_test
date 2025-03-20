@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Http\Resources\ResourceResource;
+use App\Services\Dto\ResponseDto;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -35,6 +37,31 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
+     */
+    public function render($request, Throwable $e)
+    {
+        return response()->json(
+            new ResourceResource(
+                new ResponseDto(
+                    false,
+                    [
+                        'error' => $e->getMessage(),
+                        'code' => $e->getCode()
+                    ]
+                )
+            ),
+            422
+        );
+    }
 
     /**
      * Register the exception handling callbacks for the application.

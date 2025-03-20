@@ -22,24 +22,19 @@ class BookingsService implements BookingsServiceInterface
      *
      * @param CreateBookingDto $createBookingDto
      * @return ResponseDto
+     * @throws \Exception
      */
     public function book(CreateBookingDto $createBookingDto): ResponseDto
     {
-        try {
-            $this->resourceHasBookingOnGivenDates(
-                $createBookingDto->resourceId,
-                $createBookingDto->startTime,
-                $createBookingDto->endTime
-            );
-            $success = $this->bookingRepository->create($createBookingDto);
-        } catch (\Throwable $e) {
-            return new ResponseDto(
-                false,
-                $e->getMessage(),
-            );
-        }
+        $this->resourceHasBookingOnGivenDates(
+            $createBookingDto->resourceId,
+            $createBookingDto->startTime,
+            $createBookingDto->endTime
+        );
 
-        return new ResponseDto($success);
+        return new ResponseDto(
+            $this->bookingRepository->create($createBookingDto)
+        );
     }
 
     /**
@@ -71,7 +66,7 @@ class BookingsService implements BookingsServiceInterface
             $startDate,
             $endDate
         )) {
-            throw new \Exception('На выбранные даты уже есть бронирование.');
+            throw new \Exception('На выбранные даты уже есть бронирование.', 422);
         }
     }
 

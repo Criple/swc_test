@@ -40,16 +40,9 @@ class ResourcesService implements ResourcesServiceInterface
      */
     public function createResource(CreateResourceDto $createResourceDto): ResponseDto
     {
-        try {
-            $success = $this->resourceRepository->create($createResourceDto);
-        } catch (\Throwable $e) {
-            return new ResponseDto(
-                false,
-                $e->getMessage(),
-            );
-        }
-
-        return new ResponseDto($success);
+        return new ResponseDto(
+            $this->resourceRepository->create($createResourceDto)
+        );
     }
 
     /**
@@ -60,20 +53,11 @@ class ResourcesService implements ResourcesServiceInterface
      */
     public function getBookings(int $id): ResponseDto
     {
-        try {
-            $data = $this->bookingRepository->getBookings(
-                new GetResourceBookingsDto($id)
-            );
-        } catch (\Throwable $e) {
-            return new ResponseDto(
-                false,
-                $e->getMessage(),
-            );
-        }
-
         return new ResponseDto(
             true,
-            $data
+            $this->bookingRepository->getBookings(
+                new GetResourceBookingsDto($id)
+            )
         );
     }
 
