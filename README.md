@@ -1,3 +1,15 @@
+<p>
+    Как запустить: <br />
+    <ol>
+        <li>composer install</li>
+        <li>Прописать доступы к БД в .env</li>
+        <li>Запустить миграции php artisan migrate</li>
+        <li>Сгенерировать документацию php artisan l5-swagger:generate</li>
+        <li>Можно работать либо запускать тесты php artisan test</li>
+    </ol>
+</p>
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
